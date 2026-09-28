@@ -1,3 +1,9 @@
+df["conversion_rate"] = df["purchases"] / df["visitors"] * 100
+
+df = df.sort_values("conversion_rate", ascending=False)
+
+df
+
 
 df["conversion_rate"] = df["purchases"] / df["visitors"] * 100
 df2 = df[(df["visitors"] >= 100) & (df["conversion_rate"] >= 5)]
