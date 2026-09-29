@@ -9,3 +9,9 @@ df["conversion_rate"] = df["purchases"] / df["visitors"] * 100
 df2 = df[(df["visitors"] >= 100) & (df["conversion_rate"] >= 5)]
 def2 = df2.sort_values("conversion_rate", ascending=False)
 df2
+
+
+channel_summary = df.groupby("channel")[["visitors", "purchases"]].sum()
+channel_summary["conversion_rate"] = 100*(df["purchases"]/df["visitors"])
+channel_summary =  channel_summary.sort_values("conversion_rate", ascending=False)
+channel_summary
