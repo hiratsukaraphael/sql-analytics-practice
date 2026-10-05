@@ -22,3 +22,28 @@ channel_device_summary = (df.groupby(["channel", "device"])[["visitors", "purcha
 channel_device_summary["conversion_rate"] =  100*(channel_device_summary["purchases"] / channel_device_summary["visitors"])
 channel_device_summary = channel_device_summary.sort_values("conversion_rate", ascending=False)
 channel_device_summary
+
+## Product Funnel Analysis
+import pandas as pd
+
+data = {
+    "device": ["Desktop", "Mobile"],
+    "visitors": [800, 1200],
+    "product_views": [640, 840],
+    "add_to_cart": [320, 300],
+    "checkout": [240, 180],
+    "purchases": [216, 144]
+}
+
+funnel = pd.DataFrame(data)
+
+funnel
+
+funnel["view_rate"] = (funnel["product_views"] / funnel["visitors"] * 100)
+funnel["cart_rate"] = (funnel["add_to_cart"] / funnel["product_views"] * 100)
+funnel["checkout_rate"] = (funnel["checkout"] / funnel["add_to_cart"] * 100)
+funnel["purchase_rate"] = (funnel["purchases"] / funnel["checkout"] * 100)
+funnel
+
+funnel["overall_conversion"] = (funnel["purchases"] / funnel["visitors"] * 100)
+funnel
