@@ -1,0 +1,18 @@
+import pandas as pd
+
+total_users = users["channel"].value_counts()
+
+active_users = users[users["sessions_7d"] >= 3]["channel"].value_counts()
+
+summary = pd.DataFrame({
+    "total_users": total_users,
+    "active_users": active_users
+})
+
+summary["engagement_rate"] = (
+    summary["active_users"] / summary["total_users"]
+) * 100
+
+summary = summary.reset_index()
+
+print(summary)
