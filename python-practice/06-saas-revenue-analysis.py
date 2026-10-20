@@ -8,3 +8,4 @@ C. starter_mrr = users[users["plan"] == 'Starter']["monthly_revenue"].sum()
 
 print(starter_mrr)
 Business Interpretation
+
